@@ -8,8 +8,8 @@ init,
 
 ```bash
 # (install yarn)
-$ nodenv install 12.0.0
-$ nodenv local 12.0.0
+$ nodenv install 12.22.10
+$ nodenv local 12.22.10
 $ cat <<EOF > .env.local
 NOTION_API_SECRET=<YOUR_NOTION_API_SECRET>
 DATABASE_ID=<YOUR_DATABASE_ID>
