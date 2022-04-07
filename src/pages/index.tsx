@@ -1,23 +1,73 @@
 import DocumentHead from '../components/document-head'
-import ExtLink from '../components/ext-link'
-import styles from '../styles/page.module.css'
+import {
+  NoContents,
+  PostDate,
+  PostTags,
+  PostTitle,
+  BlogTagLink,
+  SidebarLogo,
+} from '../components/blog-parts'
+import styles from '../styles/blog.module.css'
+import {
+  getPosts,
+  getFirstPost,
+  getRankedPosts,
+  getAllTags,
+} from '../lib/notion/client'
 
-const RenderPage = () => (
-  <div className={styles.container}>
-    <DocumentHead />
+export async function getStaticProps() {
+  const [posts, firstPost, rankedPosts, tags] = await Promise.all([
+    getPosts(),
+    getFirstPost(),
+    getRankedPosts(),
+    getAllTags(),
+  ])
 
-    <div>
-      <h2>Welcome!</h2>
-      <p>Your easy-notion-blog deployed successfully!</p>
-      <p>Have fun!</p>
-      <p>
-        easy-notion-blog powered by{' '}
-        <ExtLink href="https://github.com/otoyo/easy-notion-blog">
-          otoyo/easy-notion-blog
-        </ExtLink>
-      </p>
+  return {
+    props: {
+      posts,
+      firstPost,
+      rankedPosts,
+      tags,
+    },
+    revalidate: 60,
+  }
+}
+
+const RenderPosts = ({
+  posts = [],
+  firstPost,
+  rankedPosts = [],
+  tags = [],
+}) => {
+  return (
+    <div className={styles.container}>
+      <DocumentHead title="Home" />
+
+      <div className={styles.subContent}>
+        <SidebarLogo />
+        <BlogTagLink tags={tags} />
+      </div>
+
+      <div className={styles.mainContent}>
+        <NoContents contents={posts} />
+
+        {posts.map(post => {
+          return (
+            <div className={styles.postIndex} key={post.Slug}>
+              <div className={styles.postLeft}>
+                <PostTitle post={post} />
+              </div>
+              <div className={styles.postRight}>
+                <PostTags post={post} />
+                <PostDate post={post} />
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
-export default RenderPage
+export default RenderPosts

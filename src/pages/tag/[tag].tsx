@@ -1,26 +1,24 @@
 import { useRouter } from 'next/router'
 
-import DocumentHead from '../../../components/document-head'
+import DocumentHead from '../../components/document-head'
 import {
-  BlogPostLink,
   BlogTagLink,
   NoContents,
   PostDate,
-  PostExcerpt,
   PostTags,
   PostTitle,
   PostsNotFound,
-  ReadMoreLink,
-} from '../../../components/blog-parts'
-import styles from '../../../styles/blog.module.css'
-import { getTagLink } from '../../../lib/blog-helpers'
+  SidebarLogo,
+} from '../../components/blog-parts'
+import styles from '../../styles/blog.module.css'
+import { getTagLink } from '../../lib/blog-helpers'
 import { useEffect } from 'react'
 import {
   getPosts,
   getRankedPosts,
   getPostsByTag,
   getAllTags,
-} from '../../../lib/notion/client'
+} from '../../lib/notion/client'
 
 export async function getStaticProps({ params: { tag } }) {
   const posts = await getPostsByTag(tag)
@@ -29,7 +27,7 @@ export async function getStaticProps({ params: { tag } }) {
     console.log(`Failed to find posts for tag: ${tag}`)
     return {
       props: {
-        redirect: '/blog',
+        redirect: '/',
       },
       revalidate: 30,
     }
@@ -85,6 +83,10 @@ const RenderPostsByTags = ({
   return (
     <div className={styles.container}>
       <DocumentHead description={`Posts in ${tag}`} />
+      <div className={styles.subContent}>
+        <SidebarLogo />
+        <BlogTagLink tags={tags} />
+      </div>
 
       <div className={styles.mainContent}>
         <header>
@@ -95,21 +97,17 @@ const RenderPostsByTags = ({
 
         {posts.map(post => {
           return (
-            <div className={styles.post} key={post.Slug}>
-              <PostDate post={post} />
-              <PostTags post={post} />
-              <PostTitle post={post} />
-              <PostExcerpt post={post} />
-              <ReadMoreLink post={post} />
+            <div className={styles.postIndex} key={post.Slug}>
+              <div className={styles.postLeft}>
+                <PostTitle post={post} />
+              </div>
+              <div className={styles.postRight}>
+                <PostTags post={post} />
+                <PostDate post={post} />
+              </div>
             </div>
           )
         })}
-      </div>
-
-      <div className={styles.subContent}>
-        <BlogPostLink heading="Recommended" posts={rankedPosts} />
-        <BlogPostLink heading="Latest Posts" posts={recentPosts} />
-        <BlogTagLink heading="Categories" tags={tags} />
       </div>
     </div>
   )

@@ -1,30 +1,27 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { NUMBER_OF_POSTS_PER_PAGE } from '../../../lib/notion/server-constants'
-import DocumentHead from '../../../components/document-head'
+import { NUMBER_OF_POSTS_PER_PAGE } from '../../lib/notion/server-constants'
+import DocumentHead from '../../components/document-head'
 import {
-  BlogPostLink,
   BlogTagLink,
-  NextPageLink,
   NoContents,
   PostDate,
-  PostExcerpt,
   PostTags,
   PostTitle,
   PostsNotFound,
-  ReadMoreLink,
-} from '../../../components/blog-parts'
+  SidebarLogo,
+} from '../../components/blog-parts'
 import styles from '../../../styles/blog.module.css'
 
-import { getBeforeLink } from '../../../lib/blog-helpers'
+import { getBeforeLink } from '../../lib/blog-helpers'
 import {
   getPosts,
   getRankedPosts,
   getPostsBefore,
   getFirstPost,
   getAllTags,
-} from '../../../lib/notion/client'
+} from '../../lib/notion/client'
 
 export async function getStaticProps({ params: { date } }) {
   if (!Date.parse(date) || !/\d{4}-\d{2}-\d{2}/.test(date)) {
@@ -91,26 +88,24 @@ const RenderPostsBeforeDate = ({
 
         <NoContents contents={posts} />
 
+        <div className={styles.subContent}>
+          <SidebarLogo />
+          <BlogTagLink tags={tags} />
+        </div>
+
         {posts.map(post => {
           return (
-            <div className={styles.post} key={post.Slug}>
-              <PostDate post={post} />
-              <PostTags post={post} />
-              <PostTitle post={post} />
-              <PostExcerpt post={post} />
-              <ReadMoreLink post={post} />
+            <div className={styles.postIndex} key={post.Slug}>
+              <div className={styles.postLeft}>
+                <PostTitle post={post} />
+              </div>
+              <div className={styles.postRight}>
+                <PostTags post={post} />
+                <PostDate post={post} />
+              </div>
             </div>
           )
         })}
-
-        <footer>
-          <NextPageLink firstPost={firstPost} posts={posts} />
-        </footer>
-      </div>
-
-      <div className={styles.subContent}>
-        <BlogPostLink heading="Recommended" posts={rankedPosts} />
-        <BlogTagLink heading="Categories" tags={tags} />
       </div>
     </div>
   )

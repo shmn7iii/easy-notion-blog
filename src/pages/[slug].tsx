@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { NEXT_PUBLIC_URL } from '../../lib/notion/server-constants'
-import DocumentHead from '../../components/document-head'
+import { NEXT_PUBLIC_URL } from '../lib/notion/server-constants'
+import DocumentHead from '../components/document-head'
 import {
-  BlogPostLink,
   BlogTagLink,
   NoContents,
   PostBody,
@@ -12,10 +11,11 @@ import {
   PostTags,
   PostTitle,
   PostsNotFound,
-} from '../../components/blog-parts'
-import SocialButtons from '../../components/social-buttons'
-import styles from '../../styles/blog.module.css'
-import { getBlogLink } from '../../lib/blog-helpers'
+  SidebarLogo,
+} from '../components/blog-parts'
+import SocialButtons from '../components/social-buttons'
+import styles from '../styles/blog.module.css'
+import { getBlogLink } from '../lib/blog-helpers'
 import {
   getPosts,
   getAllPosts,
@@ -24,7 +24,7 @@ import {
   getPostsByTag,
   getAllTags,
   getAllBlocksByBlockId,
-} from '../../lib/notion/client'
+} from '../lib/notion/client'
 
 export async function getStaticProps({ params: { slug } }) {
   const post = await getPostBySlug(slug)
@@ -33,7 +33,7 @@ export async function getStaticProps({ params: { slug } }) {
     console.log(`Failed to find post for slug: ${slug}`)
     return {
       props: {
-        redirect: '/blog',
+        redirect: '/',
       },
       revalidate: 30,
     }
@@ -103,6 +103,11 @@ const RenderPost = ({
         urlOgImage={post.OGImage}
       />
 
+      <div className={styles.subContent}>
+        <SidebarLogo />
+        <BlogTagLink tags={tags} />
+      </div>
+
       <div className={styles.mainContent}>
         <div className={styles.post}>
           <PostDate post={post} />
@@ -125,16 +130,6 @@ const RenderPost = ({
             )}
           </footer>
         </div>
-      </div>
-
-      <div className={styles.subContent}>
-        <BlogPostLink
-          heading="Posts in the same category"
-          posts={sameTagPosts}
-        />
-        <BlogPostLink heading="Recommended" posts={rankedPosts} />
-        <BlogPostLink heading="Latest posts" posts={recentPosts} />
-        <BlogTagLink heading="Categories" tags={tags} />
       </div>
     </div>
   )
