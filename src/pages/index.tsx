@@ -34,12 +34,7 @@ export async function getStaticProps() {
   }
 }
 
-const RenderPosts = ({
-  posts = [],
-  firstPost,
-  rankedPosts = [],
-  tags = [],
-}) => {
+const RenderPosts = ({ posts = [], tags = [] }) => {
   return (
     <div className={styles.container}>
       <DocumentHead title="Home" />

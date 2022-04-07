@@ -57,14 +57,7 @@ export async function getStaticPaths() {
   }
 }
 
-const RenderPostsBeforeDate = ({
-  date,
-  posts = [],
-  firstPost,
-  rankedPosts = [],
-  tags = [],
-  redirect,
-}) => {
+const RenderPostsBeforeDate = ({ date, posts = [], tags = [], redirect }) => {
   const router = useRouter()
 
   useEffect(() => {

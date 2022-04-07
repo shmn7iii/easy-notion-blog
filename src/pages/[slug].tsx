@@ -74,15 +74,7 @@ export async function getStaticPaths() {
   }
 }
 
-const RenderPost = ({
-  post,
-  blocks = [],
-  rankedPosts = [],
-  recentPosts = [],
-  sameTagPosts = [],
-  tags = [],
-  redirect,
-}) => {
+const RenderPost = ({ post, blocks = [], tags = [], redirect }) => {
   const router = useRouter()
 
   useEffect(() => {

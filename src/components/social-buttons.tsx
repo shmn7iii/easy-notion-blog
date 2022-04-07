@@ -1,8 +1,6 @@
 import {
   FacebookIcon,
   FacebookShareButton,
-  HatenaIcon,
-  HatenaShareButton,
   PocketIcon,
   PocketShareButton,
   TwitterIcon,

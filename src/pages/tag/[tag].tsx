@@ -60,14 +60,7 @@ export async function getStaticPaths() {
   }
 }
 
-const RenderPostsByTags = ({
-  tag,
-  posts = [],
-  rankedPosts,
-  recentPosts = [],
-  tags = [],
-  redirect,
-}) => {
+const RenderPostsByTags = ({ tag, posts = [], tags = [], redirect }) => {
   const router = useRouter()
 
   useEffect(() => {
