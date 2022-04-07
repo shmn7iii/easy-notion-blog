@@ -48,7 +48,6 @@ exports.set = async function() {
         direction: 'descending',
       },
     ],
-    page_size: 100,
   }
 
   let results = []

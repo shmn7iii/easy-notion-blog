@@ -31,10 +31,10 @@ const client = new Client({
   auth: NOTION_API_SECRET,
 })
 
-export async function getPosts(pageSize = 10) {
+export async function getPosts(pageSize = 1000) {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
-    return allPosts.slice(0, pageSize)
+    return allPosts
   }
 
   const params = {
@@ -47,7 +47,6 @@ export async function getPosts(pageSize = 10) {
         direction: 'descending',
       },
     ],
-    page_size: pageSize,
   }
 
   const data = await client.databases.query(params)
@@ -74,7 +73,6 @@ export async function getAllPosts() {
           direction: 'descending',
         },
       ],
-      page_size: 100,
     }
 
     while (true) {
@@ -93,7 +91,7 @@ export async function getAllPosts() {
   return results.filter(item => _validPost(item)).map(item => _buildPost(item))
 }
 
-export async function getRankedPosts(pageSize = 10) {
+export async function getRankedPosts(pageSize = 1000) {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts
@@ -106,7 +104,6 @@ export async function getRankedPosts(pageSize = 10) {
         }
         return 1
       })
-      .slice(0, pageSize)
   }
 
   const params = {
@@ -125,7 +122,6 @@ export async function getRankedPosts(pageSize = 10) {
         direction: 'descending',
       },
     ],
-    page_size: pageSize,
   }
 
   const data = await client.databases.query(params)
@@ -135,10 +131,10 @@ export async function getRankedPosts(pageSize = 10) {
     .map(item => _buildPost(item))
 }
 
-export async function getPostsBefore(date: string, pageSize = 10) {
+export async function getPostsBefore(date: string, pageSize = 1000) {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
-    return allPosts.filter(post => post.Date < date).slice(0, pageSize)
+    return allPosts.filter(post => post.Date < date)
   }
 
   const params = {
@@ -158,7 +154,6 @@ export async function getPostsBefore(date: string, pageSize = 10) {
         direction: 'descending',
       },
     ],
-    page_size: pageSize,
   }
 
   const data = await client.databases.query(params)
@@ -236,10 +231,10 @@ export async function getPostBySlug(slug: string) {
   return _buildPost(data.results[0])
 }
 
-export async function getPostsByTag(tag: string, pageSize = 100) {
+export async function getPostsByTag(tag: string, pageSize = 1000) {
   if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
-    return allPosts.filter(post => post.Tags.includes(tag)).slice(0, pageSize)
+    return allPosts.filter(post => post.Tags.includes(tag))
   }
 
   const params = {
@@ -259,7 +254,6 @@ export async function getPostsByTag(tag: string, pageSize = 100) {
         direction: 'descending',
       },
     ],
-    page_size: pageSize,
   }
 
   const data = await client.databases.query(params)
