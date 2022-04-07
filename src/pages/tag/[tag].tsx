@@ -13,12 +13,7 @@ import {
 import styles from '../../styles/blog.module.css'
 import { getTagLink } from '../../lib/blog-helpers'
 import { useEffect } from 'react'
-import {
-  getPosts,
-  getRankedPosts,
-  getPostsByTag,
-  getAllTags,
-} from '../../lib/notion/client'
+import { getPostsByTag, getAllTags } from '../../lib/notion/client'
 
 export async function getStaticProps({ params: { tag } }) {
   const posts = await getPostsByTag(tag)
@@ -33,17 +28,11 @@ export async function getStaticProps({ params: { tag } }) {
     }
   }
 
-  const [rankedPosts, recentPosts, tags] = await Promise.all([
-    getRankedPosts(),
-    getPosts(5),
-    getAllTags(),
-  ])
+  const [tags] = await Promise.all([getAllTags()])
 
   return {
     props: {
       posts,
-      rankedPosts,
-      recentPosts,
       tags,
       tag,
     },

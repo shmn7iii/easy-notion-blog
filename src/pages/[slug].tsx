@@ -17,9 +17,7 @@ import SocialButtons from '../components/social-buttons'
 import styles from '../styles/blog.module.css'
 import { getBlogLink } from '../lib/blog-helpers'
 import {
-  getPosts,
   getAllPosts,
-  getRankedPosts,
   getPostBySlug,
   getPostsByTag,
   getAllTags,
@@ -39,26 +37,16 @@ export async function getStaticProps({ params: { slug } }) {
     }
   }
 
-  const [
-    blocks,
-    rankedPosts,
-    recentPosts,
-    tags,
-    sameTagPosts,
-  ] = await Promise.all([
+  const [blocks, tags, sameTagPosts] = await Promise.all([
     getAllBlocksByBlockId(post.PageId),
-    getRankedPosts(),
-    getPosts(5),
     getAllTags(),
-    getPostsByTag(post.Tags[0], 6),
+    getPostsByTag(post.Tags[0]),
   ])
 
   return {
     props: {
       post,
       blocks,
-      rankedPosts,
-      recentPosts,
       tags,
       sameTagPosts: sameTagPosts.filter(p => p.Slug !== post.Slug),
     },

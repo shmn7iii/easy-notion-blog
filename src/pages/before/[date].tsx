@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { NUMBER_OF_POSTS_PER_PAGE } from '../../lib/notion/server-constants'
 import DocumentHead from '../../components/document-head'
 import {
   BlogTagLink,
@@ -29,7 +28,7 @@ export async function getStaticProps({ params: { date } }) {
   }
 
   const [posts, firstPost, rankedPosts, tags] = await Promise.all([
-    getPostsBefore(date, NUMBER_OF_POSTS_PER_PAGE),
+    getPostsBefore(date),
     getFirstPost(),
     getRankedPosts(),
     getAllTags(),
