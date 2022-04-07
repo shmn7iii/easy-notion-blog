@@ -12,7 +12,7 @@ import {
   PostsNotFound,
   SidebarLogo,
 } from '../../components/blog-parts'
-import styles from '../../../styles/blog.module.css'
+import styles from '../../styles/blog.module.css'
 
 import { getBeforeLink } from '../../lib/blog-helpers'
 import {
