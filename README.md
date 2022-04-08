@@ -1,15 +1,19 @@
 ## shmn7iii blog
 
-fork from [easy-notion-blog](https://github.com/otoyo/easy-notion-blog)
+https://blog.shmn7iii.net
+
+Fork from [easy-notion-blog](https://github.com/otoyo/easy-notion-blog).
 
 ## local development
 
 init,
 
 ```bash
-# (install yarn)
+$ npm install -g yarn
+$ anyenv install nodenv
 $ nodenv install 12.22.10
 $ nodenv local 12.22.10
+
 $ cat <<EOF > .env.local
 NOTION_API_SECRET=<YOUR_NOTION_API_SECRET>
 DATABASE_ID=<YOUR_DATABASE_ID>
@@ -21,13 +25,14 @@ $ yarn install
 dev,
 
 ```bash
-yarn dev
-```
+$ yarn dev
 
-[http://localhost:3000](http://localhost:3000)
+# or
+$ vercel dev
+```
 
 ## lint
 
 ```bash
-yarn lint
+$ yarn lint
 ```
