@@ -47,13 +47,13 @@
   border-bottom: 1px solid rgb(214, 214, 214);
 }
 
-.postLeft {
+.postIndexLeft {
   display: flex;
   flex-direction: column;
   float: left;
 }
 
-.postRight {
+.postIndexRight {
   display: flex;
   flex-direction: column;
   text-align: right;

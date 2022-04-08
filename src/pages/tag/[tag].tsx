@@ -80,10 +80,10 @@ const RenderPostsByTags = ({ tag, posts = [], tags = [], redirect }) => {
         {posts.map(post => {
           return (
             <div className={styles.postIndex} key={post.Slug}>
-              <div className={styles.postLeft}>
+              <div className={styles.postIndexLeft}>
                 <PostTitle post={post} />
               </div>
-              <div className={styles.postRight}>
+              <div className={styles.postIndexRight}>
                 <PostTags post={post} />
                 <PostDate post={post} />
               </div>
