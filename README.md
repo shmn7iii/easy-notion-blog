@@ -1,6 +1,6 @@
 ## shmn7iii blog
 
-fork from easy-notion-blog
+fork from [easy-notion-blog](https://github.com/otoyo/easy-notion-blog)
 
 ## local development
 
@@ -26,10 +26,8 @@ yarn dev
 
 [http://localhost:3000](http://localhost:3000)
 
-## lint & test
+## lint
 
 ```bash
 yarn lint
-yarn test
-yarn jest --updateSnapshot
 ```
