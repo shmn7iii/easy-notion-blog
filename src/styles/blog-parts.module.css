@@ -20,7 +20,7 @@
 }
 
 .postTags {
-  font-size: 1rem;
+  font-size: 0.9rem;
   padding: 0 0 0.2rem;
 }
 .postTags a {
@@ -33,9 +33,10 @@
 
 .postDate {
   margin-top: auto;
+  margin-left: auto;
+  width: max-content;
   font-size: 0.8rem;
   text-align: right;
-  width: max-content;
 }
 
 .postBody {
