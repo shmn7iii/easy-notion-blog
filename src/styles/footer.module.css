@@ -12,6 +12,7 @@
 .footer span {
   color: #777;
 }
-.footer span a {
-  color: inherit;
+.footer a {
+  font-weight: 600;
+  color: rgb(82, 82, 82);
 }
