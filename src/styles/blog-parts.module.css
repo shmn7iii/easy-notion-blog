@@ -1,4 +1,5 @@
 .postTitle {
+  margin-top: auto;
   font-size: 1.6rem;
   color: var(--fg);
 }
@@ -8,27 +9,33 @@
   }
 }
 .postTitle a {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: inherit;
+  font-weight: 400;
 }
 @media (max-width: 600px) {
   .postTitle a {
-    font-size: 1.15rem;
+    font-size: 0.9rem;
   }
 }
 
 .postTags {
   font-size: 1rem;
   padding: 0 0 0.2rem;
-  color: var(--fg);
 }
 .postTags a {
+  margin-top: auto;
   color: var(--fg);
+}
+.postTags :global(a):before {
+  content: '⚑ ';
 }
 
 .postDate {
-  padding: 0 0 0.3rem;
+  margin-top: auto;
   font-size: 0.8rem;
+  text-align: right;
+  width: max-content;
 }
 
 .postBody {

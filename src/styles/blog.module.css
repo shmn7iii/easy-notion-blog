@@ -10,7 +10,6 @@
 
 .mainContent {
   width: 100%;
-  margin-top: 20px;
   margin-left: 200px;
 }
 @media (max-width: 600px) {
@@ -23,15 +22,10 @@
   padding: 0 0 20px;
   text-align: center;
 }
-.mainContent footer {
-  border-top: 1px dashed #888;
-  margin: 0 auto;
-  padding: 40px 0 0;
-}
-@media (max-width: 600px) {
-  .mainContent footer {
-    margin: 0 auto 40px;
-  }
+.mainContent header h2 {
+  max-width: 300px;
+  margin: 20px auto 10px;
+  /* font-size: 30px; */
 }
 
 .subContent {
@@ -46,24 +40,38 @@
 }
 
 .postIndex {
-  margin: 0 auto 10px;
-  max-width: 800px;
   display: flex;
+  max-width: 800px;
+  margin: 20px auto 10px;
   justify-content: space-between;
-  border-bottom: 1px dashed #888;
+  border-bottom: 1px solid rgb(214, 214, 214);
 }
 
 .postLeft {
+  display: flex;
+  flex-direction: column;
   float: left;
 }
 
 .postRight {
+  display: flex;
+  flex-direction: column;
   text-align: right;
+  color: rgb(184, 184, 184);
+}
+
+.postTagDate {
+  display: flex;
+  justify-content: space-between;
+  color: var(--fg);
+  margin-top: 10px;
+  padding-bottom: 2px;
+  border-bottom: 1px dashed #888;
 }
 
 .post {
   margin: 0 auto 40px;
-  padding-left: 50px;
+  max-width: 800px;
 }
 .post :global(h3) {
   margin: 0;

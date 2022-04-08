@@ -90,9 +90,11 @@ const RenderPost = ({ post, blocks = [], tags = [], redirect }) => {
 
       <div className={styles.mainContent}>
         <div className={styles.post}>
-          <PostDate post={post} />
-          <PostTags post={post} />
           <PostTitle post={post} enableLink={false} />
+          <div className={styles.postTagDate}>
+            <PostTags post={post} />
+            <PostDate post={post} />
+          </div>
 
           <NoContents contents={blocks} />
           <PostBody blocks={blocks} />
