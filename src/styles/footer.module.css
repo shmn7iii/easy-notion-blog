@@ -1,7 +1,13 @@
 .footer {
   margin: 40px 0 10px;
+  margin-left: 200px;
   text-align: center;
   font-size: 0.75rem;
+}
+@media (max-width: 600px) {
+  .footer {
+    margin-left: 0;
+  }
 }
 .footer span {
   color: #777;
