@@ -20,11 +20,13 @@
 }
 
 .postTags {
-  font-size: 0.9rem;
   padding: 0 0 0.2rem;
+  font-size: 0.9rem;
 }
 .postTags a {
+  width: max-content;
   margin-top: auto;
+  margin-left: auto;
   color: var(--fg);
 }
 .postTags :global(a):before {
@@ -32,11 +34,10 @@
 }
 
 .postDate {
+  width: max-content;
   margin-top: auto;
   margin-left: auto;
-  width: max-content;
   font-size: 0.8rem;
-  text-align: right;
 }
 
 .postBody {
