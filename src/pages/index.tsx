@@ -8,19 +8,14 @@ import {
   SidebarLogo,
 } from '../components/blog-parts'
 import styles from '../styles/blog.module.css'
-import { getPosts, getFirstPost, getAllTags } from '../lib/notion/client'
+import { getPosts, getAllTags } from '../lib/notion/client'
 
 export async function getStaticProps() {
-  const [posts, firstPost, tags] = await Promise.all([
-    getPosts(),
-    getFirstPost(),
-    getAllTags(),
-  ])
+  const [posts, tags] = await Promise.all([getPosts(), getAllTags()])
 
   return {
     props: {
       posts,
-      firstPost,
       tags,
     },
     revalidate: 60,

@@ -19,7 +19,6 @@ import { getBlogLink } from '../lib/blog-helpers'
 import {
   getAllPosts,
   getPostBySlug,
-  getPostsByTag,
   getAllTags,
   getAllBlocksByBlockId,
 } from '../lib/notion/client'
@@ -37,10 +36,9 @@ export async function getStaticProps({ params: { slug } }) {
     }
   }
 
-  const [blocks, tags, sameTagPosts] = await Promise.all([
+  const [blocks, tags] = await Promise.all([
     getAllBlocksByBlockId(post.PageId),
     getAllTags(),
-    getPostsByTag(post.Tags[0]),
   ])
 
   return {
@@ -48,7 +46,6 @@ export async function getStaticProps({ params: { slug } }) {
       post,
       blocks,
       tags,
-      sameTagPosts: sameTagPosts.filter(p => p.Slug !== post.Slug),
     },
     revalidate: 60,
   }
