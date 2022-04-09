@@ -79,33 +79,24 @@
 }
 .post :global(h4) {
   margin: 1.8rem 0 0.8rem;
+  padding-bottom: 5px;
   color: var(--fg);
-  font-size: 1.1rem;
-}
-.post :global(h4):after {
-  color: var(--accents-1);
-  font-size: 0.9rem;
-  padding-left: 0.2rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgb(191, 191, 191);
 }
 .post :global(h5) {
   margin: 1.8rem 0 0.8rem;
+  padding-bottom: 5px;
   color: var(--fg);
-  font-size: 1.1rem;
-}
-.post :global(h5):after {
-  color: var(--accents-1);
-  font-size: 0.9rem;
-  padding-left: 0.2rem;
+  font-size: 1.3rem;
+  border-bottom: 1px solid rgb(191, 191, 191);
 }
 .post :global(h6) {
   margin: 1.8rem 0 0.8rem;
+  padding-bottom: 5px;
   color: var(--fg);
   font-size: 1.1rem;
-}
-.post :global(h6):after {
-  color: var(--accents-1);
-  font-size: 0.9rem;
-  padding-left: 0.2rem;
+  border-bottom: 1px solid rgb(191, 191, 191);
 }
 .post :global(p) {
   margin: 0.3rem 0;
