@@ -289,7 +289,10 @@ hr {
 code {
   font-size: 0.9rem;
   background: #f1f1f1;
+  /*
+  これ入ってると先頭行に謎のスペースが入る
   padding: 0.25rem;
+  */
   border-radius: var(--radius);
   font-family: var(--font-mono);
 }
