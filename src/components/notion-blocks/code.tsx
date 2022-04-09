@@ -1,6 +1,11 @@
 import dynamic from 'next/dynamic'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-go'
+import 'prismjs/components/prism-ruby'
+import 'prismjs/components/prism-java'
+import 'prismjs/components/prism-python'
 
 import styles from '../../styles/notion-block.module.css'
 
@@ -20,13 +25,13 @@ const Code = ({ block }) => {
     language = 'csharp'
   }
 
-  ;(async () => {
-    try {
-      await import('prismjs/components/prism-' + language)
-    } catch (error) {
-      console.log(error)
-    }
-  })()
+  // ;(async () => {
+  //   try {
+  //     await import('prismjs/components/prism-' + language)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // })()
 
   return (
     <div className={styles.code}>
