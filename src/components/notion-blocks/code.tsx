@@ -10,9 +10,9 @@ const Code = ({ block }) => {
   const code = block.Code.Text.map(richText => richText.Text.Content).join('')
   let language = block.Code.Language || 'javascript'
 
-  if (language == 'Shell') {
+  if (language == 'shell') {
     language = 'bash'
-  } else if (language == 'Plane Text') {
+  } else if (language == 'plane text') {
     language = 'text'
   }
 
