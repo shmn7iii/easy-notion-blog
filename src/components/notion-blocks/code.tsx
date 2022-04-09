@@ -8,7 +8,13 @@ const Mermaid = dynamic(() => import('./mermaid'))
 
 const Code = ({ block }) => {
   const code = block.Code.Text.map(richText => richText.Text.Content).join('')
-  const language = block.Code.Language || 'javascript'
+  var language = block.Code.Language || 'javascript'
+
+  if (language == 'Shell') {
+    language = 'bash'
+  } else if (language == 'Plane Text') {
+    language = 'text'
+  }
 
   ;(async () => {
     try {
