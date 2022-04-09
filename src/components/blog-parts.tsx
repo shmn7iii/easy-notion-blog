@@ -8,11 +8,13 @@ import styles from '../styles/blog-parts.module.css'
 import Image from 'next/image'
 
 export const SidebarLogo = () => (
-  <Link href="/" passHref>
-    <a>
-      <Image src="/logo.png" width={174} height={53} alt="logo" />
-    </a>
-  </Link>
+  <div style={{ marginBottom: '20px' }}>
+    <Link href="/" passHref>
+      <a>
+        <Image src="/logo.png" width={174} height={53} alt="logo" />
+      </a>
+    </Link>
+  </div>
 )
 
 export const PostTitle = ({ post, enableLink = true }) => {
