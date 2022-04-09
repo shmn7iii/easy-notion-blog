@@ -3,12 +3,7 @@ import Link from 'next/link'
 
 import NotionBlock from './notion-block'
 import * as interfaces from '../lib/notion/interfaces'
-import {
-  getBeforeLink,
-  getBlogLink,
-  getDateStr,
-  getTagLink,
-} from '../lib/blog-helpers'
+import { getBlogLink, getDateStr, getTagLink } from '../lib/blog-helpers'
 import styles from '../styles/blog-parts.module.css'
 import Image from 'next/image'
 
@@ -61,23 +56,6 @@ export const PostBody = ({ blocks }) => (
     ))}
   </div>
 )
-
-export const NextPageLink = ({ firstPost, posts }) => {
-  if (!firstPost) return null
-  if (posts.length === 0) return null
-
-  const lastPost = posts[posts.length - 1]
-
-  if (firstPost.Date === lastPost.Date) return null
-
-  return (
-    <div className={styles.nextPageLink}>
-      <Link href="/before/[date]" as={getBeforeLink(lastPost.Date)} passHref>
-        <a>Next page ＞</a>
-      </Link>
-    </div>
-  )
-}
 
 export const NoContents = ({ contents }) => {
   if (!!contents && contents.length > 0) return null
