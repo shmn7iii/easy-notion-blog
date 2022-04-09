@@ -10,6 +10,14 @@ const Code = ({ block }) => {
   const code = block.Code.Text.map(richText => richText.Text.Content).join('')
   const language = block.Code.Language || 'javascript'
 
+  ;(async () => {
+    try {
+      await import('prismjs/components/prism-' + language)
+    } catch (error) {
+      console.log(error)
+    }
+  })()
+
   return (
     <div className={styles.code}>
       {language === 'mermaid' ? (
