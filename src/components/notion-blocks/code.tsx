@@ -12,8 +12,12 @@ const Code = ({ block }) => {
 
   if (language == 'shell') {
     language = 'bash'
-  } else if (language == 'plane text') {
+  } else if (language == 'plain text') {
     language = 'text'
+  } else if (language == 'c++') {
+    language = 'cpp'
+  } else if (language == 'c#') {
+    language = 'csharp'
   }
 
   ;(async () => {
