@@ -33,6 +33,10 @@ const RenderPosts = ({ posts = [], tags = [] }) => {
       </div>
 
       <div className={styles.mainContent}>
+        <header>
+          <h2>All posts</h2>
+        </header>
+
         <NoContents contents={posts} />
 
         {posts.map(post => {
