@@ -27,6 +27,13 @@
   margin: 20px auto 10px;
   /* font-size: 30px; */
 }
+@media (max-width: 600px) {
+  .mainContent header h2 {
+    text-align: left;
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+}
 
 .subContent {
   position: fixed;
