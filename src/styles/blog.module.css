@@ -37,7 +37,10 @@
 
 .subContent {
   position: fixed;
+  height: 100vh;
   width: 200px;
+  padding-bottom: 30px;
+  overflow: scroll;
 }
 @media (max-width: 600px) {
   .subContent {
