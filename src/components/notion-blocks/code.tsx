@@ -6,32 +6,33 @@ import 'prismjs/components/prism-go'
 import 'prismjs/components/prism-ruby'
 import 'prismjs/components/prism-java'
 import 'prismjs/components/prism-python'
+import 'prismjs/components/prism-css'
+import 'prismjs/components/prism-diff'
+import 'prismjs/components/prism-docker'
+import 'prismjs/components/prism-elixir'
+import 'prismjs/components/prism-go'
+import 'prismjs/components/prism-hcl'
+import 'prismjs/components/prism-java'
+import 'prismjs/components/prism-json'
+import 'prismjs/components/prism-python'
+import 'prismjs/components/prism-ruby'
+import 'prismjs/components/prism-sql'
+import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-yaml'
+
+import { RichText } from '../../lib/notion/interfaces'
 
 import styles from '../../styles/notion-block.module.css'
 
 const Mermaid = dynamic(() => import('./mermaid'))
 
 const Code = ({ block }) => {
-  const code = block.Code.Text.map(richText => richText.Text.Content).join('')
-  let language = block.Code.Language || 'javascript'
-
-  if (language == 'shell') {
-    language = 'bash'
-  } else if (language == 'plain text') {
-    language = 'text'
-  } else if (language == 'c++') {
-    language = 'cpp'
-  } else if (language == 'c#') {
-    language = 'csharp'
-  }
-
-  // ;(async () => {
-  //   try {
-  //     await import('prismjs/components/prism-' + language)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // })()
+  const code = block.Code.Text.map(
+    (richText: RichText) => richText.Text.Content
+  ).join('')
+  const language = block.Code.Language.toLowerCase()
+  const grammer =
+    Prism.languages[language.toLowerCase()] || Prism.languages.javascript
 
   return (
     <div className={styles.code}>
@@ -41,11 +42,7 @@ const Code = ({ block }) => {
         <pre>
           <code
             dangerouslySetInnerHTML={{
-              __html: Prism.highlight(
-                code,
-                Prism.languages[language.toLowerCase()] ||
-                  Prism.languages.javascript
-              ),
+              __html: Prism.highlight(code, grammer, language),
             }}
           />
         </pre>
