@@ -1,6 +1,5 @@
 import DocumentHead from '../components/document-head'
 import {
-  NoContents,
   PostDate,
   PostTags,
   PostTitle,
@@ -8,21 +7,30 @@ import {
   SidebarLogo,
 } from '../components/blog-parts'
 import styles from '../styles/blog.module.css'
-import { getPosts, getAllTags } from '../lib/notion/client'
+import {
+  getPosts,
+  getAllTags,
+  getRankedPosts
+ } from '../lib/notion/client'
 
 export async function getStaticProps() {
-  const [posts, tags] = await Promise.all([getPosts(), getAllTags()])
+  const [posts, rankedPosts, tags] = await Promise.all([
+    getPosts(),
+    getRankedPosts(),
+    getAllTags()
+  ])
 
   return {
     props: {
       posts,
+      rankedPosts,
       tags,
     },
     revalidate: 60,
   }
 }
 
-const RenderPosts = ({ posts = [], tags = [] }) => {
+const RenderPosts = ({ posts = [], rankedPosts = [], tags = [] }) => {
   return (
     <div className={styles.container}>
       <DocumentHead title="Home" />
@@ -33,25 +41,40 @@ const RenderPosts = ({ posts = [], tags = [] }) => {
       </div>
 
       <div className={styles.mainContent}>
-        <header>
-          <h2>All posts</h2>
-        </header>
 
-        <NoContents contents={posts} />
+        <div className={styles.posts}>
+          <h2 className={styles.posts}>Recommended Posts</h2>
+          {rankedPosts.map(post => {
+            return (
+              <div className={styles.postIndex} key={post.Slug}>
+                <div className={styles.postIndexLeft}>
+                  <PostTitle post={post} />
+                </div>
+                <div className={styles.postIndexRight}>
+                  <PostTags post={post} />
+                  <PostDate post={post} />
+                </div>
+              </div>
+            )
+          })}
+        </div>
 
-        {posts.map(post => {
-          return (
-            <div className={styles.postIndex} key={post.Slug}>
-              <div className={styles.postIndexLeft}>
-                <PostTitle post={post} />
+        <div className={styles.posts}>
+          <h2 className={styles.posts}>All posts</h2>
+          {posts.map(post => {
+            return (
+              <div className={styles.postIndex} key={post.Slug}>
+                <div className={styles.postIndexLeft}>
+                  <PostTitle post={post} />
+                </div>
+                <div className={styles.postIndexRight}>
+                  <PostTags post={post} />
+                  <PostDate post={post} />
+                </div>
               </div>
-              <div className={styles.postIndexRight}>
-                <PostTags post={post} />
-                <PostDate post={post} />
-              </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     </div>
   )

@@ -18,22 +18,6 @@
     padding-left: 0;
   }
 }
-.mainContent header {
-  padding: 0 0 20px;
-  text-align: center;
-}
-.mainContent header h2 {
-  max-width: 300px;
-  margin: 20px auto 10px;
-  /* font-size: 30px; */
-}
-@media (max-width: 600px) {
-  .mainContent header h2 {
-    text-align: left;
-    margin-left: 0px;
-    margin-bottom: 0px;
-  }
-}
 
 .subContent {
   position: fixed;
@@ -49,12 +33,30 @@
   }
 }
 
+.posts {
+  margin: 5px auto 50px;
+  max-width: 800px;
+}
+.posts h2 {
+  margin: 0;
+  font-size: larger;
+  font-weight: 800;
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+@media (max-width: 600px) {
+  .posts h2 {
+    text-align: left;
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+}
+
 .postIndex {
   display: flex;
-  max-width: 800px;
   margin: 10px auto 10px;
   justify-content: space-between;
   border-bottom: 1px solid rgb(214, 214, 214);
+  font-weight: 500;
 }
 
 .postIndexLeft {
@@ -69,15 +71,10 @@
   text-align: right;
   color: rgb(184, 184, 184);
 }
-
-.postTagDate {
-  display: flex;
-  justify-content: space-between;
-  color: var(--fg);
-  margin-top: 10px;
-  padding-bottom: 2px;
-  border-bottom: 1px dashed #888;
+.postIndexRight a {
+  font-weight: 400;
 }
+
 
 .post {
   margin: 20px auto 40px;
@@ -141,4 +138,12 @@
 .post footer {
   padding: 0;
   border: 0;
+}
+.postTagDate {
+  display: flex;
+  justify-content: space-between;
+  color: var(--fg);
+  margin-top: 10px;
+  padding-bottom: 2px;
+  border-bottom: 1px dashed #888;
 }

@@ -69,6 +69,7 @@
 .blogTagLink {
 }
 .blogTagLink a {
+  font-weight: 500;
   color: #333;
 }
 .blogTagLink ul {
