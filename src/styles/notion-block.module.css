@@ -31,10 +31,22 @@
   line-height: 1.2rem;
   border-radius: var(--radius);
 }
+.code pre div {
+  position: relative;
+  display: inline-block;
+}
 .code pre code {
   color: var(--fg);
   padding: 0;
   background: rgb(247, 246, 243) !important;
+}
+.code pre div::after {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 0.8em;
+  height: 1px;
+  content: '';
 }
 
 .gray {
