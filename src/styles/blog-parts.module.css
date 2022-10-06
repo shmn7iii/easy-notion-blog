@@ -1,4 +1,4 @@
-.logo div {
+.logo {
   width: 200px;
   height: 60px;
   background-color: #FFD840;
@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 25px;
 }
 .logo p {
   margin: 4px 0 0 0;
@@ -13,6 +14,11 @@
   font-family: 'Fugaz One', cursive;
   font-size: 35px;
   font-weight: 400;
+}
+@media (max-width: 600px) {
+  .logo  {
+    position: static;
+  }
 }
 
 .postIndexTitle {
@@ -53,6 +59,7 @@
 .postTags {
   padding: 0 0 0.2rem;
   font-size: 0.9rem;
+  overflow: auto;
 }
 .postTags a {
   width: max-content;
@@ -98,8 +105,12 @@
 }
 
 .blogTagLink {
-  margin-top: 30px;
+  margin: 5px 1.3rem 0;
+  height: calc(100vh - 110px);
+  padding-bottom: 30px;
+  overflow-y: scroll;
 }
+
 .blogTagLink a {
   font-weight: 500;
   color: #333;

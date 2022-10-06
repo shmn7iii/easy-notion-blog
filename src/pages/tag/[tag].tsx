@@ -65,19 +65,25 @@ const RenderPostsByTags = ({ tag, posts = [], tags = [], redirect }) => {
   return (
     <div className={styles.container}>
       <DocumentHead description={`Posts in ${tag}`} />
+
       <div className={styles.subContent}>
         <SidebarLogo />
+        <p className={styles.blogTagLinkTitle}>
+          ⚑ Tags
+        </p>
         <BlogTagLink tags={tags} />
       </div>
 
       <div className={styles.mainContent}>
-        <header>
-          <h2>{tag}</h2>
-        </header>
 
-        <NoContents contents={posts} />
+        <div className={styles.posts}>
+          <h2 className={styles.posts}>
+          {tag}
+          </h2>
 
-        {posts.map(post => {
+          <NoContents contents={posts} />
+
+          {posts.map(post => {
           return (
             <div className={styles.postIndex} key={post.Slug}>
               <div className={styles.postIndexLeft}>
@@ -90,6 +96,8 @@ const RenderPostsByTags = ({ tag, posts = [], tags = [], redirect }) => {
             </div>
           )
         })}
+        </div>
+
       </div>
     </div>
   )

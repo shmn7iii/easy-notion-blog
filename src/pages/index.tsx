@@ -1,5 +1,6 @@
 import DocumentHead from '../components/document-head'
 import {
+  NoContents,
   PostDate,
   PostTags,
   PostIndexTitle,
@@ -37,13 +38,25 @@ const RenderPosts = ({ posts = [], rankedPosts = [], tags = [] }) => {
 
       <div className={styles.subContent}>
         <SidebarLogo />
+        <p className={styles.blogTagLinkTitle}>
+          ⚑ Tags
+        </p>
         <BlogTagLink tags={tags} />
+      </div>
+
+      <div className={styles.mobileLogo}>
+        <SidebarLogo />
       </div>
 
       <div className={styles.mainContent}>
 
         <div className={styles.posts}>
-          <h2 className={styles.posts}>Recommended Posts</h2>
+          <h2 className={styles.posts}>
+            Recommended Posts
+          </h2>
+
+          <NoContents contents={posts} />
+
           {rankedPosts.map(post => {
             return (
               <div className={styles.postIndex} key={post.Slug}>
@@ -60,7 +73,12 @@ const RenderPosts = ({ posts = [], rankedPosts = [], tags = [] }) => {
         </div>
 
         <div className={styles.posts}>
-          <h2 className={styles.posts}>All Posts</h2>
+          <h2 className={styles.posts}>
+            All Posts
+          </h2>
+
+          <NoContents contents={posts} />
+
           {posts.map(post => {
             return (
               <div className={styles.postIndex} key={post.Slug}>

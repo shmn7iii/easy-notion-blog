@@ -82,6 +82,9 @@ const RenderPost = ({ post, blocks = [], tags = [], redirect }) => {
 
       <div className={styles.subContent}>
         <SidebarLogo />
+        <p className={styles.blogTagLinkTitle}>
+          ⚑ Tags
+        </p>
         <BlogTagLink tags={tags} />
       </div>
 
