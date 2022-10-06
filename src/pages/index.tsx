@@ -2,7 +2,7 @@ import DocumentHead from '../components/document-head'
 import {
   PostDate,
   PostTags,
-  PostTitle,
+  PostIndexTitle,
   BlogTagLink,
   SidebarLogo,
 } from '../components/blog-parts'
@@ -48,7 +48,7 @@ const RenderPosts = ({ posts = [], rankedPosts = [], tags = [] }) => {
             return (
               <div className={styles.postIndex} key={post.Slug}>
                 <div className={styles.postIndexLeft}>
-                  <PostTitle post={post} />
+                  <PostIndexTitle post={post} />
                 </div>
                 <div className={styles.postIndexRight}>
                   <PostTags post={post} />
@@ -60,12 +60,12 @@ const RenderPosts = ({ posts = [], rankedPosts = [], tags = [] }) => {
         </div>
 
         <div className={styles.posts}>
-          <h2 className={styles.posts}>All posts</h2>
+          <h2 className={styles.posts}>All Posts</h2>
           {posts.map(post => {
             return (
               <div className={styles.postIndex} key={post.Slug}>
                 <div className={styles.postIndexLeft}>
-                  <PostTitle post={post} />
+                  <PostIndexTitle post={post} />
                 </div>
                 <div className={styles.postIndexRight}>
                   <PostTags post={post} />

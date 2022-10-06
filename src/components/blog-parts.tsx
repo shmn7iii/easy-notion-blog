@@ -33,6 +33,22 @@ export const PostTitle = ({ post, enableLink = true }) => {
   )
 }
 
+export const PostIndexTitle = ({ post, enableLink = true }) => {
+  const postTitle = post.Title ? post.Title : ''
+
+  return (
+    <p className={styles.postIndexTitle}>
+      {enableLink ? (
+        <Link href="/[slug]" as={getBlogLink(post.Slug)} passHref>
+          <a>{postTitle}</a>
+        </Link>
+      ) : (
+        postTitle
+      )}
+    </p>
+  )
+}
+
 export const PostTags = ({ post }) => (
   <div className={styles.postTags}>
     {post.Tags &&
