@@ -74,6 +74,10 @@ const RenderPostsByTags = ({ tag, posts = [], tags = [], redirect }) => {
         <BlogTagLink tags={tags} />
       </div>
 
+      <div className={styles.mobileLogo}>
+        <SidebarLogo />
+      </div>
+
       <div className={styles.mainContent}>
 
         <div className={styles.posts}>
