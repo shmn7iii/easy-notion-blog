@@ -105,7 +105,7 @@
 }
 
 .blogTagLink {
-  margin: 5px 1.3rem 0;
+  margin: 5px 2px;
   height: calc(100vh - 110px);
   padding-bottom: 30px;
   overflow-y: scroll;
@@ -124,7 +124,7 @@
   position: relative;
   font-size: 1rem;
   padding: 0.4rem 0;
-  padding-left: 0.7rem;
+  /* padding-left: 0.7rem; */
   line-height: 1.2rem;
 }
 .blogTagLink p {
