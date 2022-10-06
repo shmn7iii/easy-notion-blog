@@ -5,14 +5,13 @@ import NotionBlock from './notion-block'
 import * as interfaces from '../lib/notion/interfaces'
 import { getBlogLink, getDateStr, getTagLink } from '../lib/blog-helpers'
 import styles from '../styles/blog-parts.module.css'
-import Image from 'next/image'
 
 export const SidebarLogo = () => (
-  <div style={{ marginBottom: '20px' }}>
+  <div className={styles.logo}>
     <Link href="/" passHref>
-      <a>
-        <Image src="/logo.png" width={174} height={53} alt="logo" />
-      </a>
+      <div>
+        <p>shmn7iii</p>
+      </div>
     </Link>
   </div>
 )
