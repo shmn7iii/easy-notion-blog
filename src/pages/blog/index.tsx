@@ -31,7 +31,7 @@ export async function getStaticProps() {
 }
 
 const RenderPosts = ({ posts = [], rankedPosts = [], tags = [] }) => {
-  posts = posts.filter(post => post.Slug.match(/^(?!._).*$/));
+  posts = posts.filter(post => post.Slug.match(/^(?!_).*$/));
 
   return (
     <div className={styles.content}>
