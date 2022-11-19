@@ -38,6 +38,15 @@
   font-weight: 400;
 }
 
+.headerLinks {
+  display: flex;
+  align-items: center;
+}
+.headerLinks svg {
+  margin: 0 10px 0 10px;
+  cursor: pointer;
+}
+
 .postIndexTitle {
   margin: auto 0 0;
 }
