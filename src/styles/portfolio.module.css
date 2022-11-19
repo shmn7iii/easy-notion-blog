@@ -3,14 +3,12 @@
   margin: 0 20px;
 }
 
-.post {
+.icon img {
+  border-radius: 5px;
 }
-.post :global(h3) {
-  margin: 0;
-  color: var(--fg);
-}
+
 .post :global(h4) {
-  margin: 1.8rem 0 0.8rem;
+  margin: 0 0 0.8rem;
   padding-bottom: 5px;
   color: var(--fg);
   font-size: 1.5rem;
