@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { NEXT_PUBLIC_URL } from '../lib/notion/server-constants'
-import DocumentHead from '../components/document-head'
+import DocumentHead from '../../components/document-head'
 import {
   BlogTagLink,
   NoContents,
@@ -11,17 +10,15 @@ import {
   PostTags,
   PostTitle,
   PostsNotFound,
-  SidebarLogo,
-} from '../components/blog-parts'
-import SocialButtons from '../components/social-buttons'
-import styles from '../styles/blog.module.css'
-import { getBlogLink } from '../lib/blog-helpers'
+} from '../../components/blog-parts'
+import styles from '../../styles/blog.module.css'
+import { getBlogLink } from '../../lib/blog-helpers'
 import {
   getAllPosts,
   getPostBySlug,
   getAllTags,
   getAllBlocksByBlockId,
-} from '../lib/notion/client'
+} from '../../lib/notion/client'
 
 export async function getStaticProps({ params: { slug } }) {
   const post = await getPostBySlug(slug)
@@ -73,24 +70,12 @@ const RenderPost = ({ post, blocks = [], tags = [], redirect }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.content}>
       <DocumentHead
         title={post.Title}
         description={post.Excerpt}
         urlOgImage={post.OGImage}
       />
-
-      <div className={styles.subContent}>
-        <SidebarLogo />
-        <p className={styles.blogTagLinkTitle}>
-          ⚑ Tags
-        </p>
-        <BlogTagLink tags={tags} />
-      </div>
-
-      <div className={styles.mobileLogo}>
-        <SidebarLogo />
-      </div>
 
       <div className={styles.mainContent}>
         <div className={styles.post}>
@@ -102,20 +87,11 @@ const RenderPost = ({ post, blocks = [], tags = [], redirect }) => {
 
           <NoContents contents={blocks} />
           <PostBody blocks={blocks} />
-
-          <footer>
-            {NEXT_PUBLIC_URL && (
-              <SocialButtons
-                title={post.Title}
-                url={new URL(
-                  getBlogLink(post.Slug),
-                  NEXT_PUBLIC_URL
-                ).toString()}
-                id={post.Slug}
-              />
-            )}
-          </footer>
         </div>
+      </div>
+
+      <div className={styles.subContent}>
+        <BlogTagLink tags={tags} />
       </div>
     </div>
   )
