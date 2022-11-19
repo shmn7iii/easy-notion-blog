@@ -6,13 +6,24 @@ import * as interfaces from '../lib/notion/interfaces'
 import { getBlogLink, getDateStr, getTagLink } from '../lib/blog-helpers'
 import styles from '../styles/blog-parts.module.css'
 
-export const SidebarLogo = () => (
+export const Logo = ({ subTitle = null }) => (
   <div className={styles.logo}>
-    <Link href="/" passHref>
-      <div>
-        <p>shmn7iii</p>
-      </div>
-    </Link>
+    <div className={styles.logoShape}>
+      <Link href="/" passHref>
+        <div>
+          <p>shmn7iii</p>
+        </div>
+      </Link>
+    </div>
+    <div className={styles.logoSubTitle}>
+      {subTitle ? (
+        <Link href={ "/" + subTitle} passHref>
+          <p>{subTitle.charAt(0).toUpperCase() + subTitle.slice(1).toLowerCase()}</p>
+        </Link>
+      ) : (
+        null
+      )}
+    </div>
   </div>
 )
 
@@ -22,7 +33,7 @@ export const PostTitle = ({ post, enableLink = true }) => {
   return (
     <h3 className={styles.postTitle}>
       {enableLink ? (
-        <Link href="/[slug]" as={getBlogLink(post.Slug)} passHref>
+        <Link href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
           <a>{postTitle}</a>
         </Link>
       ) : (
@@ -38,7 +49,7 @@ export const PostIndexTitle = ({ post, enableLink = true }) => {
   return (
     <p className={styles.postIndexTitle}>
       {enableLink ? (
-        <Link href="/[slug]" as={getBlogLink(post.Slug)} passHref>
+        <Link href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
           <a>{postTitle}</a>
         </Link>
       ) : (
@@ -53,7 +64,7 @@ export const PostTags = ({ post }) => (
     {post.Tags &&
       post.Tags.length > 0 &&
       post.Tags.map(tag => (
-        <Link href="/tag/[tag]" as={getTagLink(tag)} key={tag} passHref>
+        <Link href="/blog/tag/[tag]" as={getTagLink(tag)} key={tag} passHref>
           <a>{tag}</a>
         </Link>
       ))}
@@ -81,9 +92,14 @@ export const NoContents = ({ contents }) => {
 }
 
 export const BlogTagLink = ({ tags }) => (
-  <div className={styles.blogTagLink}>
-    <NoContents contents={tags} />
-    <TagLinkList tags={tags} />
+  <div>
+    <div className={styles.blogTagLinkTitle}>
+      <p>⚑ Tags</p>
+    </div>
+    <div className={styles.blogTagLink}>
+      <NoContents contents={tags} />
+      <TagLinkList tags={tags} />
+    </div>
   </div>
 )
 
@@ -95,7 +111,7 @@ export const TagLinkList = ({ tags }) => {
       {tags.map(tag => {
         return (
           <div key={tag}>
-            <Link href="/tag/[tag]" as={getTagLink(tag)} passHref>
+            <Link href="/blog/tag/[tag]" as={getTagLink(tag)} passHref>
               <a>{tag}</a>
             </Link>
           </div>

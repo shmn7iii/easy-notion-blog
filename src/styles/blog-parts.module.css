@@ -1,24 +1,41 @@
 .logo {
-  width: 200px;
-  height: 60px;
+  display: flex;
+}
+
+.logoShape {
+  width: 130px;
+  height: 40px;
   background-color: #FFD840;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 25px;
 }
-.logo p {
+.logoShape p {
   margin: 4px 0 0 0;
   color: #333;
   font-family: 'Fugaz One', cursive;
-  font-size: 35px;
-  font-weight: 400;
+  font-size: 25px;
+  font-weight: 300;
 }
 @media (max-width: 600px) {
-  .logo  {
+  .logoShape  {
     position: static;
   }
+}
+
+.logoSubTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.logoSubTitle p {
+  margin: 0;
+  color: #333;
+  font-size: 25px;
+  font-weight: 400;
 }
 
 .postIndexTitle {
@@ -104,11 +121,14 @@
 .noContents {
 }
 
+.blogTagLinkTitle p {
+  margin: 0 2px 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
 .blogTagLink {
   margin: 5px 2px;
-  height: calc(100vh - 110px);
-  padding-bottom: 30px;
-  overflow-y: scroll;
 }
 
 .blogTagLink a {

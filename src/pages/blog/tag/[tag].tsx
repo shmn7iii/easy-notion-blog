@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import DocumentHead from '../../components/document-head'
+import DocumentHead from '../../../components/document-head'
 import {
   BlogTagLink,
   NoContents,
@@ -8,12 +8,11 @@ import {
   PostTags,
   PostTitle,
   PostsNotFound,
-  SidebarLogo,
-} from '../../components/blog-parts'
-import styles from '../../styles/blog.module.css'
-import { getTagLink } from '../../lib/blog-helpers'
+} from '../../../components/blog-parts'
+import styles from '../../../styles/blog.module.css'
+import { getTagLink } from '../../../lib/blog-helpers'
 import { useEffect } from 'react'
-import { getPostsByTag, getAllTags } from '../../lib/notion/client'
+import { getPostsByTag, getAllTags } from '../../../lib/notion/client'
 
 export async function getStaticProps({ params: { tag } }) {
   const posts = await getPostsByTag(tag)
@@ -63,20 +62,8 @@ const RenderPostsByTags = ({ tag, posts = [], tags = [], redirect }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.content}>
       <DocumentHead description={`Posts in ${tag}`} />
-
-      <div className={styles.subContent}>
-        <SidebarLogo />
-        <p className={styles.blogTagLinkTitle}>
-          ⚑ Tags
-        </p>
-        <BlogTagLink tags={tags} />
-      </div>
-
-      <div className={styles.mobileLogo}>
-        <SidebarLogo />
-      </div>
 
       <div className={styles.mainContent}>
 
@@ -101,7 +88,10 @@ const RenderPostsByTags = ({ tag, posts = [], tags = [], redirect }) => {
           )
         })}
         </div>
+      </div>
 
+      <div className={styles.subContent}>
+        <BlogTagLink tags={tags} />
       </div>
     </div>
   )
