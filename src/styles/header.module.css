@@ -7,7 +7,7 @@
 }
 @media (max-width: 600px) {
   .header {
-    display: none;
+    padding: 5px 10px 5px 10px;
   }
 }
 

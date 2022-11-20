@@ -37,6 +37,11 @@
   font-size: 25px;
   font-weight: 700;
 }
+@media (max-width: 600px) {
+  .logoSubTitle  {
+    display: none;
+  }
+}
 
 .headerLinks {
   display: flex;
