@@ -24,7 +24,7 @@ export async function getStaticProps() {
 
 const RenderPost = ({ blocks = [] }) => {
   return (
-    <div className={styles.content}>
+    <div>
       <DocumentHead title="Home"/>
       <div className={styles.icon}>
         <Image src="/icon.png" width={128} height={128} alt="icon" />
