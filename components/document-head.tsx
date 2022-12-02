@@ -50,21 +50,6 @@ const DocumentHead = ({ title = '', description = '', urlOgImage = '' }) => {
           href={new URL(asPath, NEXT_PUBLIC_URL).toString()}
         />
       ) : null}
-
-      <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-      ></link>
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin=""
-      ></link>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap"
-        rel="stylesheet"
-      ></link>
-
     </Head>
   )
 }
