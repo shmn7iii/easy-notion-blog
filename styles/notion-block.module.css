@@ -166,6 +166,7 @@
   display: flex;
   overflow: hidden;
   user-select: none;
+  margin-bottom: 10px;
 }
 .bookmark > a > div:first-child {
   flex: 4 1 180px;
