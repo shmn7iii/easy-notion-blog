@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import React from 'react'
+import useSWR from "swr"
+import axios from 'axios'
 
 import DocumentHead from '../../components/document-head'
+import { Block } from '../../lib/notion/interfaces'
 import {
   BlogTagLink,
   NoContents,
@@ -38,11 +40,16 @@ export async function getStaticProps({ params: { slug } }) {
     getAllTags(),
   ])
 
+  const fallback = {}
+  fallback[slug] = blocks
+
   return {
     props: {
+      slug,
       post,
       blocks,
       tags,
+      fallback,
     },
     revalidate: 60,
   }
@@ -56,16 +63,41 @@ export async function getStaticPaths() {
   }
 }
 
-const RenderPost = ({ post, blocks = [], tags = [], redirect }) => {
-  const router = useRouter()
 
-  useEffect(() => {
-    if (redirect && !post) {
-      router.replace(redirect)
+const fetchBlocks = async (slug: string): Promise<Array<Block>> => {
+  try {
+    const { data: blocks } = await axios.get(`/api/blocks?slug=${slug}`)
+    return blocks as Array<Block>
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const includeExpiredImage = (blocks: Array<Block>): boolean => {
+  const now = Date.now()
+
+  blocks.forEach(block => {
+    if (block.Type === 'image') {
+      const image = block.Image
+      if (image.File && image.File.ExpiryTime && Date.parse(image.File.ExpiryTime) < now) {
+        return true
+      }
     }
-  }, [router, redirect, post])
+    // TODO: looking for the image block in Children recursively
+  })
 
-  if (!post) {
+  return false
+}
+
+const RenderPost = ({
+  slug,
+  post,
+  tags = [],
+  fallback,
+}) => {
+  const { data: blocks, error } = useSWR(includeExpiredImage(fallback[slug]) && slug, fetchBlocks, { fallbackData: fallback[slug] })
+
+  if (error || !blocks) {
     return <PostsNotFound />
   }
 

@@ -76,6 +76,7 @@ export interface Image {
 
 export interface File {
   Url: string
+  ExpiryTime?: string
 }
 
 export interface External {
