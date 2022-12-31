@@ -12,7 +12,7 @@ import {
 
 export async function getStaticProps() {
   const post = await getPostBySlug("_index")
-  const blocks = await getAllBlocksByBlockId(post.PageId)
+  const blocks = await getAllBlocksByBlockId(post?.PageId)
 
   return {
     props: {
