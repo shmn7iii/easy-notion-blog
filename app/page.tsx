@@ -1,25 +1,53 @@
-import Link from 'next/link'
-import { NEXT_PUBLIC_SITE_TITLE } from './server-constants'
+import Image from 'next/image'
 import GoogleAnalytics from '../components/google-analytics'
-import styles from '../styles/page.module.css'
+import {
+  PostBody
+} from '../components/blog-parts'
+import styles from '../styles/portfolio.module.css'
+import {
+  getPosts,
+  getAllPosts,
+  getRankedPosts,
+  getPostBySlug,
+  getPostsByTag,
+  getAllTags,
+  getAllBlocksByBlockId,
+} from '../lib/notion/client'
 
-const RootPage = () => (
-  <>
-    <GoogleAnalytics pageTitle={NEXT_PUBLIC_SITE_TITLE} />
-    <div className={styles.container}>
+export const revalidate = 30
+
+export async function generateStaticParams() {
+  const posts = await getAllPosts()
+  return posts.map(p => ({ slug: p.Slug }))
+}
+
+const RootPage = async () => {
+  const post = await getPostBySlug('_index')
+
+  const [
+    blocks,
+  ] = await Promise.all([
+    getAllBlocksByBlockId(post.PageId),
+    getRankedPosts(),
+    getPosts(5),
+    getAllTags(),
+    getPostsByTag(post.Tags[0], 6),
+  ])
+
+  return (
+    <>
+      <GoogleAnalytics pageTitle={post.Title} />
       <div>
-        <h2>Welcome!</h2>
-        <p>Your easy-notion-blog deployed successfully!</p>
-        <p>Have fun!</p>
-        <p>
-          easy-notion-blog powered by{' '}
-          <Link href="https://github.com/otoyo/easy-notion-blog">
-            otoyo/easy-notion-blog
-          </Link>
-        </p>
+        <div className={styles.icon}>
+          <Image src="/icon.png" width={128} height={128} alt="icon" />
+        </div>
+
+        <div className={styles.post}>
+          <PostBody blocks={blocks} />
+        </div>
       </div>
-    </div>
-  </>
-)
+    </>
+  )
+}
 
 export default RootPage

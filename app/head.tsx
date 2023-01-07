@@ -1,7 +1,7 @@
 import DocumentHead from '../components/document-head'
 
 const RootHead = () => (
-  <DocumentHead />
+  <DocumentHead title="Home" />
 )
 
 export default RootHead

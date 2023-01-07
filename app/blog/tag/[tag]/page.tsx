@@ -2,21 +2,15 @@ import { notFound } from 'next/navigation'
 import { NUMBER_OF_POSTS_PER_PAGE } from '../../../../app/server-constants'
 import GoogleAnalytics from '../../../../components/google-analytics'
 import {
-  BlogPostLink,
   BlogTagLink,
-  NextPageLink,
+  NoContents,
   PostDate,
-  PostExcerpt,
   PostTags,
   PostTitle,
-  ReadMoreLink,
 } from '../../../../components/blog-parts'
 import styles from '../../../../styles/blog.module.css'
 import {
-  getPosts,
-  getRankedPosts,
   getPostsByTag,
-  getFirstPostByTag,
   getAllTags,
 } from '../../../../lib/notion/client'
 
@@ -36,43 +30,41 @@ const BlogTagPage = async ({ params: { tag: encodedTag } }) => {
     notFound()
   }
 
-  const [firstPost, rankedPosts, recentPosts, tags] = await Promise.all([
-    getFirstPostByTag(tag),
-    getRankedPosts(),
-    getPosts(5),
+  const [tags] = await Promise.all([
     getAllTags(),
   ])
 
   return (
     <>
       <GoogleAnalytics pageTitle={`Posts in ${tag}`} />
-      <div className={styles.container}>
+      <div className={styles.content}>
         <div className={styles.mainContent}>
-          <header>
-            <h2>{tag}</h2>
-          </header>
 
-          {posts.map(post => {
+          <div className={styles.posts}>
+            <h2 className={styles.posts}>
+            {tag}
+            </h2>
+
+            <NoContents contents={posts} />
+
+            {posts.map(post => {
             return (
-              <div className={styles.post} key={post.Slug}>
-                <PostDate post={post} />
-                <PostTags post={post} />
-                <PostTitle post={post} />
-                <PostExcerpt post={post} />
-                <ReadMoreLink post={post} />
+              <div className={styles.postIndex} key={post.Slug}>
+                <div className={styles.postIndexLeft}>
+                  <PostTitle post={post} />
+                </div>
+                <div className={styles.postIndexRight}>
+                  <PostTags post={post} />
+                  <PostDate post={post} />
+                </div>
               </div>
             )
           })}
-
-          <footer>
-            <NextPageLink firstPost={firstPost} posts={posts} tag={tag} />
-          </footer>
+          </div>
         </div>
 
         <div className={styles.subContent}>
-          <BlogPostLink heading="Recommended" posts={rankedPosts} />
-          <BlogPostLink heading="Latest Posts" posts={recentPosts} />
-          <BlogTagLink heading="Categories" tags={tags} />
+          <BlogTagLink tags={tags} />
         </div>
       </div>
     </>

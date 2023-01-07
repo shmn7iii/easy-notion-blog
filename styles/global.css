@@ -68,7 +68,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: var(--accents-2);
+  color: var(--accents-3);
 }
 
 mark {
