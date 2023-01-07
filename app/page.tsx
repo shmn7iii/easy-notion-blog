@@ -1,10 +1,11 @@
-import { ROOT_POST_PAGE_ID} from '../app/server-constants'
+// import { ROOT_POST_PAGE_ID} from '../app/server-constants'
 import Image from 'next/image'
 import {
   PostBody
 } from '../components/blog-parts'
 import {
   getAllPosts,
+  getPostBySlug,
   getAllBlocksByBlockId,
 } from '../lib/notion/client'
 import styles from '../styles/portfolio.module.css'
@@ -17,9 +18,15 @@ export async function generateStaticParams() {
 }
 
 const RootPage = async () => {
+  const slug = 'ion-did-create'
+  const post = await getPostBySlug(slug)
+
+  if (!post) {
+    console.log(`Failed to find post for slug: ${slug}`)
+  }
 
   const blocks = await Promise.all([
-    getAllBlocksByBlockId(ROOT_POST_PAGE_ID),
+    getAllBlocksByBlockId(post.PageId),
   ])
 
   return (
