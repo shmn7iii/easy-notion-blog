@@ -20,16 +20,21 @@ export interface Block {
   Heading3?: Heading3
   BulletedListItem?: BulletedListItem
   NumberedListItem?: NumberedListItem
+  ToDo?: ToDo
   Image?: Image
   Code?: Code
   Quote?: Quote
   Equation?: Equation
   Callout?: Callout
+  SyncedBlock?: SyncedBlock
+  Toggle?: Toggle
   Embed?: Embed
+  Video?: Video
   Bookmark?: Bookmark
   LinkPreview?: LinkPreview
   Table?: Table
   ColumnList?: ColumnList
+  TableOfContents?: TableOfContents
 }
 
 export interface Paragraph {
@@ -65,6 +70,13 @@ export interface NumberedListItem {
   Children?: Block[]
 }
 
+export interface ToDo {
+  RichTexts: RichText[]
+  Checked: boolean
+  Color: string
+  Children?: Block[]
+}
+
 export interface Image {
   Caption: RichText[]
   Type: string
@@ -72,6 +84,11 @@ export interface Image {
   External?: External
   Width?: number
   Height?: number
+}
+
+export interface Video {
+  Type: string
+  External?: External
 }
 
 export interface File {
@@ -85,12 +102,12 @@ export interface External {
 
 export interface Code {
   Caption: RichText[]
-  Text: RichText[]
+  RichTexts: RichText[]
   Language: string
 }
 
 export interface Quote {
-  Text: RichText[]
+  RichTexts: RichText[]
   Color: string
 }
 
@@ -102,6 +119,21 @@ export interface Callout {
   RichTexts: RichText[]
   Icon: Icon
   Color: string
+}
+
+export interface SyncedBlock {
+  SyncedFrom: SyncedFrom
+  Children?: Block[]
+}
+
+export interface SyncedFrom {
+  BlockId: string
+}
+
+export interface Toggle {
+  RichTexts: RichText[]
+  Color: string
+  Children: Block[]
 }
 
 export interface Embed {
@@ -148,6 +180,10 @@ export interface Column {
 export interface List {
   Type: string
   ListItems: Block[]
+}
+
+export interface TableOfContents {
+  Color: string
 }
 
 export interface RichText {

@@ -1,6 +1,10 @@
+'use client'
+
 import {
   FacebookIcon,
   FacebookShareButton,
+  HatenaIcon,
+  HatenaShareButton,
   PocketIcon,
   PocketShareButton,
   TwitterIcon,
@@ -55,6 +59,21 @@ const SocialButtons = ({ title = '', url, id = null }) => (
       >
         <PocketIcon size={32} round={true} />
       </PocketShareButton>
+    </li>
+    <li>
+      <HatenaShareButton
+        url={url}
+        title={title}
+        beforeOnClick={() =>
+          gtag.share({
+            method: 'hatena',
+            contentType: 'article',
+            itemId: id,
+          })
+        }
+      >
+        <HatenaIcon size={32} round={true} />
+      </HatenaShareButton>
     </li>
   </ul>
 )

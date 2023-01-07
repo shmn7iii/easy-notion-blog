@@ -1,6 +1,6 @@
 ## shmn7iii blog
 
-https://blog.shmn7iii.net
+https://www.shmn7iii.net
 
 Fork from [easy-notion-blog](https://github.com/otoyo/easy-notion-blog).
 
@@ -14,8 +14,8 @@ $ npm install -g yarn
 $ anyenv install nodenv
 
 # Apple Silicon mac requires running the terminal via rosetta2.
-$ nodenv install 12.22.10
-$ nodenv local 12.22.10
+$ nodenv install $(v16 or higher)
+$ nodenv local $(v16 or higher)
 
 # setting env
 $ cat <<EOF > .env.local
@@ -36,8 +36,9 @@ $ yarn dev
 $ vercel dev
 ```
 
-## lint
+## test & lint
 
 ```bash
+$ yarn test
 $ yarn lint
 ```

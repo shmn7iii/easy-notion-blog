@@ -4,7 +4,6 @@
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error",
-    "@next/next/no-img-element": "off",
-    "@typescript-eslint/no-extra-semi": "off"
+    "@next/next/no-img-element": "off"
   }
 }

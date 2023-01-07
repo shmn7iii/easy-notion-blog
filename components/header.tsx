@@ -1,18 +1,18 @@
-import { useRouter } from 'next/router';
+'use client'
 
+import { usePathname } from "next/navigation"
+import styles from '../styles/header.module.css'
 import {
   HeaderLinks,
   Logo,
 } from './blog-parts'
-import styles from '../styles/header.module.css'
 
 const Header = () => {
-  const router = useRouter();
-  const path = router.pathname;
+  const pathname = usePathname()
 
   return (
     <header className={styles.header}>
-      <Logo subTitle={path.split('/')[1]} />
+      <Logo subTitle={pathname.split('/')[1]} />
       <HeaderLinks />
     </header>
   )

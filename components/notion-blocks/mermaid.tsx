@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useRef, FC } from 'react'
 import mermaid from 'mermaid'
 
@@ -15,6 +17,7 @@ const Mermaid: FC<Props> = props => {
   useEffect(() => {
     mermaid.initialize({
       startOnLoad: false,
+      theme: 'neutral',
     })
   }, [])
 
