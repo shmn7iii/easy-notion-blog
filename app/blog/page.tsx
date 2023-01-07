@@ -1,4 +1,3 @@
-import { NUMBER_OF_POSTS_PER_PAGE } from '../../app/server-constants'
 import GoogleAnalytics from '../../components/google-analytics'
 import {
   BlogTagLink,
@@ -9,7 +8,7 @@ import {
 } from '../../components/blog-parts'
 import styles from '../../styles/blog.module.css'
 import {
-  getPosts,
+  getAllPosts,
   getRankedPosts,
   getAllTags,
 } from '../../lib/notion/client'
@@ -18,7 +17,7 @@ export const revalidate = 60
 
 const BlogPage = async () => {
   const [posts, rankedPosts, tags] = await Promise.all([
-    getPosts(NUMBER_OF_POSTS_PER_PAGE),
+    getAllPosts(),
     getRankedPosts(),
     getAllTags(),
   ])

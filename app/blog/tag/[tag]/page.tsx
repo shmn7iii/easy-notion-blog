@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation'
-import { NUMBER_OF_POSTS_PER_PAGE } from '../../../../app/server-constants'
 import GoogleAnalytics from '../../../../components/google-analytics'
 import {
   BlogTagLink,
@@ -24,7 +23,7 @@ export async function generateStaticParams() {
 const BlogTagPage = async ({ params: { tag: encodedTag } }) => {
   const tag = decodeURIComponent(encodedTag)
 
-  const posts = await getPostsByTag(tag, NUMBER_OF_POSTS_PER_PAGE)
+  const posts = await getPostsByTag(tag)
 
   if (posts.length === 0) {
     notFound()

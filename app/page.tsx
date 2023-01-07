@@ -5,12 +5,8 @@ import {
 } from '../components/blog-parts'
 import styles from '../styles/portfolio.module.css'
 import {
-  getPosts,
   getAllPosts,
-  getRankedPosts,
   getPostBySlug,
-  getPostsByTag,
-  getAllTags,
   getAllBlocksByBlockId,
 } from '../lib/notion/client'
 
@@ -28,10 +24,6 @@ const RootPage = async () => {
     blocks,
   ] = await Promise.all([
     getAllBlocksByBlockId(post.PageId),
-    getRankedPosts(),
-    getPosts(5),
-    getAllTags(),
-    getPostsByTag(post.Tags[0], 6),
   ])
 
   return (
