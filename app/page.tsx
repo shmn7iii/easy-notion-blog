@@ -20,6 +20,9 @@ export async function generateStaticParams() {
 const RootPage = async () => {
   const post = await getPostBySlug('_index')
 
+  // debug
+  console.log(post)
+
   const [
     blocks,
   ] = await Promise.all([
