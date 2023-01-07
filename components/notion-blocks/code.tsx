@@ -31,11 +31,13 @@ const Code = ({ block }) => {
         <Mermaid id={`mermaid-${block.Id}`} definition={code} />
       ) : (
         <pre>
-          <code
-            dangerouslySetInnerHTML={{
-              __html: Prism.highlight(code, grammer, language),
-            }}
-          />
+          <div>
+            <code
+              dangerouslySetInnerHTML={{
+                __html: Prism.highlight(code, grammer, language),
+              }}
+            />
+          </div>
         </pre>
       )}
       {block.Code.Caption.length > 0 && block.Code.Caption[0].Text.Content ? (

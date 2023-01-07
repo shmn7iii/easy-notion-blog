@@ -29,7 +29,7 @@ export const getDateStr = (date: string) => {
   const y = dt.getFullYear()
   const m = ('00' + (dt.getMonth() + 1)).slice(-2)
   const d = ('00' + dt.getDate()).slice(-2)
-  return y + '-' + m + '-' + d
+  return y + '/' + m + '/' + d
 }
 
 export const normalizeSlug = (slug: string) => {

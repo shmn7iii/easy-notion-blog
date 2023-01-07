@@ -1,20 +1,14 @@
-import { NUMBER_OF_POSTS_PER_PAGE } from '../../app/server-constants'
 import GoogleAnalytics from '../../components/google-analytics'
 import {
-  BlogPostLink,
   BlogTagLink,
-  NextPageLink,
   NoContents,
   PostDate,
-  PostExcerpt,
+  PostIndexTitle,
   PostTags,
-  PostTitle,
-  ReadMoreLink,
 } from '../../components/blog-parts'
 import styles from '../../styles/blog.module.css'
 import {
-  getPosts,
-  getFirstPost,
+  getAllPosts,
   getRankedPosts,
   getAllTags,
 } from '../../lib/notion/client'
@@ -22,9 +16,8 @@ import {
 export const revalidate = 60
 
 const BlogPage = async () => {
-  const [posts, firstPost, rankedPosts, tags] = await Promise.all([
-    getPosts(NUMBER_OF_POSTS_PER_PAGE),
-    getFirstPost(),
+  const [posts, rankedPosts, tags] = await Promise.all([
+    getAllPosts(),
     getRankedPosts(),
     getAllTags(),
   ])
@@ -32,33 +25,60 @@ const BlogPage = async () => {
   return (
     <>
       <GoogleAnalytics pageTitle="Blog" />
-      <div className={styles.container}>
+      <div className={styles.content}>
         <div className={styles.mainContent}>
-          <NoContents contents={posts} />
 
-          {posts.map(post => {
-            return (
-              <div className={styles.post} key={post.Slug}>
-                <PostDate post={post} />
-                <PostTags post={post} />
-                <PostTitle post={post} />
-                <PostExcerpt post={post} />
-                <ReadMoreLink post={post} />
-              </div>
-            )
-          })}
+          <div className={styles.posts}>
+            <h2 className={styles.posts}>
+              Recommended Posts
+            </h2>
 
-          <footer>
-            <NextPageLink firstPost={firstPost} posts={posts} />
-          </footer>
+            <NoContents contents={posts} />
+
+            {rankedPosts.map(post => {
+              return (
+                <div className={styles.postIndex} key={post.Slug}>
+                  <div className={styles.postIndexLeft}>
+                    <PostIndexTitle post={post} />
+                  </div>
+                  <div className={styles.postIndexRight}>
+                    <PostTags post={post} />
+                    <PostDate post={post} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className={styles.posts}>
+            <h2 className={styles.posts}>
+              All Posts
+            </h2>
+
+            <NoContents contents={posts} />
+
+            {posts.filter(post => post.Slug.match(/^(?!_).*$/)).map(post => {
+              return (
+                <div className={styles.postIndex} key={post.Slug}>
+                  <div className={styles.postIndexLeft}>
+                    <PostIndexTitle post={post} />
+                  </div>
+                  <div className={styles.postIndexRight}>
+                    <PostTags post={post} />
+                    <PostDate post={post} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
 
         <div className={styles.subContent}>
-          <BlogPostLink heading="Recommended" posts={rankedPosts} />
-          <BlogTagLink heading="Categories" tags={tags} />
+          <BlogTagLink tags={tags} />
         </div>
-      </div>
+        </div>
     </>
+
   )
 }
 
