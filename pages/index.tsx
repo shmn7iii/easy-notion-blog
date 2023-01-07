@@ -16,6 +16,17 @@ import {
 export async function getStaticProps() {
   const slug = "_index"
   const post = await getPostBySlug(slug)
+
+  if (!post) {
+    console.log(`Failed to find post for slug: ${slug}`)
+    return {
+      props: {
+        redirect: '/',
+      },
+      revalidate: 30,
+    }
+  }
+
   const blocks = await getAllBlocksByBlockId(post.PageId)
 
   const fallback = {}
