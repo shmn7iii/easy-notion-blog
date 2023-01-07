@@ -13,56 +13,68 @@
 .image > div:first-child {
   text-align: center;
 }
-
-.equation {
-  overflow-x: scroll;
+.image img {
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  border-radius: 3px;
 }
 
 .code {
   display: block;
   width: 100%;
-  padding: 1rem 0;
+  padding: 0.5rem 0 0.5rem 0;
 }
 .code pre {
   display: block;
   overflow: auto;
-  margin: 5px;
-  padding: 0.8rem;
+  padding: 1.4rem;
   background: rgb(247, 246, 243);
   font-size: 0.9rem;
   line-height: 1.2rem;
   border-radius: var(--radius);
+}
+.code pre div {
+  position: relative;
+  display: inline-block;
 }
 .code pre code {
   color: var(--fg);
   padding: 0;
   background: rgb(247, 246, 243) !important;
 }
-.gray, .gray:hover {
+.code pre div::after {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 1.4em;
+  height: 1px;
+  content: '';
+}
+
+.gray {
   color: rgba(120, 119, 116, 1);
 }
-.brown, .brown:hover {
+.brown {
   color: rgba(159, 107, 83, 1);
 }
-.orange, .orange:hover {
+.orange {
   color: rgba(217, 115, 13, 1);
 }
-.yellow, .yellow:hover {
+.yellow {
   color: rgba(203, 145, 47, 1);
 }
-.green, .green:hover {
+.green {
   color: rgba(68, 131, 97, 1);
 }
-.blue, .blue:hover {
+.blue {
   color: rgba(51, 126, 169, 1);
 }
-.purple, .purple:hover {
+.purple {
   color: rgba(144, 101, 176, 1);
 }
-.pink, .pink:hover {
+.pink {
   color: rgba(193, 76, 138, 1);
 }
-.red, .red:hover {
+.red {
   color: rgba(212, 76, 71, 1);
 }
 .grayBackground {
@@ -105,10 +117,10 @@
   border-style: solid;
   border-color: transparent;
   background: rgba(235, 236, 237, 0.6);
-  white-space: pre-wrap;
 }
 .callout div {
   margin: 0;
+  color: var(--fg);
   line-height: 1.2rem;
 }
 .callout div:first-child {
@@ -120,7 +132,7 @@
 }
 .table th,
 .table td {
-  white-space: pre;
+  white-space: nowrap;
 }
 
 .columnList {
@@ -142,19 +154,7 @@
   }
 }
 
-.toDo {
-  color: #222;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.8rem;
-  padding-inline-start: 1rem;
-}
-.toDo > div {
-}
-.toDo > div > input {
-}
-
-.bookmark {
+.linkPreview {
   display: flex;
   overflow: hidden;
   width: 100%;
@@ -170,6 +170,7 @@
   display: flex;
   overflow: hidden;
   user-select: none;
+  margin-bottom: 10px;
 }
 .bookmark > a > div:first-child {
   flex: 4 1 180px;
@@ -232,17 +233,6 @@
   object-fit: cover;
 }
 
-.toggle {
-}
-
-.toggle > summary {
-  cursor: pointer;
-}
-
-.toggle > div {
-  margin-left: 1em;
-}
-
 .tweetEmbed {
   width: 100%;
   max-width: 600px;
@@ -250,35 +240,4 @@
 }
 .tweetEmbed div:first-child div:first-child {
   margin: auto;
-}
-.video .youtube {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-top: 56.25%;
-}
-.video .youtube :first-child {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.tableOfContents {
-}
-.tableOfContents > a {
-  display: block;
-  line-height: 1.8rem;
-  font-size: 0.9rem;
-  text-decoration: underline;
-}
-.tableOfContents > a:hover {
-  background: rgba(241, 241, 239, 1) !important;
-}
-.tableOfContents > a.indent-1 {
-  padding-left: 1.5rem;
-}
-.tableOfContents > a.indent-2 {
-  padding-left: 3.0rem;
 }

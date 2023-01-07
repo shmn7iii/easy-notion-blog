@@ -1,31 +1,21 @@
 .header {
-  display: block;
-  padding: 15px 0;
-  text-align: center;
-}
-.header h1 {
-  padding: 0.5rem 0;
-  font-weight: 400;
-  color: #000;
-}
-.header h1 a {
-  color: inherit;
-}
-.header ul {
-  list-style: none;
-  margin: inherit;
-  padding: 0.5rem 0;
-  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 10px 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid;
 }
 @media (max-width: 600px) {
-  .header ul {
-    font-size: 1rem;
+  .header {
+    padding: 5px 10px 5px 10px;
   }
 }
-.header ul li {
-  display: inline-block;
-  padding: 0 15px;
+
+.links {
+  display: flex;
+  align-items: center;
 }
-.header ul li :global(a.active) {
-  color: var(--accents-3);
+.links svg {
+  margin: 0 10px 0 10px;
+  cursor: pointer;
 }
