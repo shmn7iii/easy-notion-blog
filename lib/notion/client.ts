@@ -212,7 +212,7 @@ export async function getFirstPost(): Promise<Post|null> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post|null> {
-  if (slug != '_index' && blogIndexCache.exists()) {
+  if (blogIndexCache.exists()) {
     const allPosts = await getAllPosts()
     return allPosts.find(post => post.Slug === slug)
   }

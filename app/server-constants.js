@@ -8,6 +8,7 @@ const NEXT_PUBLIC_GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID
 const NEXT_PUBLIC_SITE_TITLE = 'shmn7iii blog'
 const NEXT_PUBLIC_SITE_DESCRIPTION = 'Easy to start your blog. You can write on your Notion.'
 const NUMBER_OF_POSTS_PER_PAGE = 100
+const ROOT_POST_PAGE_ID = '57fa672d-c6d3-40cb-a8f2-668368f4c7f6'
 
 module.exports = {
   NOTION_API_SECRET,
@@ -17,4 +18,5 @@ module.exports = {
   NEXT_PUBLIC_SITE_TITLE,
   NEXT_PUBLIC_SITE_DESCRIPTION,
   NUMBER_OF_POSTS_PER_PAGE,
+  ROOT_POST_PAGE_ID,
 }

@@ -1,11 +1,10 @@
-import { redirect } from 'next/navigation'
+import { ROOT_POST_PAGE_ID} from '../app/server-constants'
 import Image from 'next/image'
 import {
   PostBody
 } from '../components/blog-parts'
 import {
   getAllPosts,
-  getPostBySlug,
   getAllBlocksByBlockId,
 } from '../lib/notion/client'
 import styles from '../styles/portfolio.module.css'
@@ -18,18 +17,9 @@ export async function generateStaticParams() {
 }
 
 const RootPage = async () => {
-  const post = await getPostBySlug('_index')
 
-  console.log(post)
-  if (!post) {
-    console.log(`Failed to find post for slug: _index`)
-    redirect('/blog')
-  }
-
-  const [
-    blocks,
-  ] = await Promise.all([
-    getAllBlocksByBlockId(post.PageId),
+  const blocks = await Promise.all([
+    getAllBlocksByBlockId(ROOT_POST_PAGE_ID),
   ])
 
   return (
