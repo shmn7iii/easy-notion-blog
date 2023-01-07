@@ -1,4 +1,3 @@
-// import { ROOT_POST_PAGE_ID} from '../app/server-constants'
 import Image from 'next/image'
 import {
   PostBody
@@ -18,13 +17,7 @@ export async function generateStaticParams() {
 }
 
 const RootPage = async () => {
-  const slug = 'hogehogehogehoge'
-  const post = await getPostBySlug(slug)
-
-  if (!post) {
-    console.log(`Failed to find post for slug: ${slug}`)
-  }
-
+  const post = await getPostBySlug('_index')
   const blocks = await Promise.all([
     getAllBlocksByBlockId(post.PageId),
   ])
