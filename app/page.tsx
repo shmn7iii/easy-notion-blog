@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 }
 
 const RootPage = async () => {
-  const slug = 'ion-did-create'
+  const slug = 'hogehogehogehoge'
   const post = await getPostBySlug(slug)
 
   if (!post) {
