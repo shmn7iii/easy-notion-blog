@@ -1,32 +1,36 @@
+import { redirect } from 'next/navigation'
 import Image from 'next/image'
-// import {
-//   PostBody
-// } from '../components/blog-parts'
+import {
+  PostBody
+} from '../components/blog-parts'
+import {
+  getAllPosts,
+  getPostBySlug,
+  getAllBlocksByBlockId,
+} from '../lib/notion/client'
 import styles from '../styles/portfolio.module.css'
-// import {
-//   getAllPosts,
-//   getPostBySlug,
-//   getAllBlocksByBlockId,
-// } from '../lib/notion/client'
 
 export const revalidate = 30
 
-// export async function generateStaticParams() {
-//   const posts = await getAllPosts()
-//   return posts.map(p => ({ slug: p.Slug }))
-// }
+export async function generateStaticParams() {
+  const posts = await getAllPosts()
+  return posts.map(p => ({ slug: p.Slug }))
+}
 
 const RootPage = async () => {
-  // const post = await getPostBySlug('_index')
+  const post = await getPostBySlug('_index')
 
-  // debug
-  // console.log(post)
+  console.log(post)
+  if (!post) {
+    console.log(`Failed to find post for slug: _index`)
+    redirect('/blog')
+  }
 
-  // const [
-  //   blocks,
-  // ] = await Promise.all([
-  //   getAllBlocksByBlockId(post.PageId),
-  // ])
+  const [
+    blocks,
+  ] = await Promise.all([
+    getAllBlocksByBlockId(post.PageId),
+  ])
 
   return (
     <>
@@ -36,7 +40,7 @@ const RootPage = async () => {
         </div>
 
         <div className={styles.post}>
-          {/* <PostBody blocks={blocks} /> */}
+          <PostBody blocks={blocks} />
         </div>
       </div>
     </>
