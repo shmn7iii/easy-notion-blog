@@ -1,0 +1,59 @@
+.icon img {
+  border-radius: 5px;
+}
+
+.post :global(h4) {
+  margin: 0 0 0.8rem;
+  padding-bottom: 5px;
+  color: var(--fg);
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgb(191, 191, 191);
+}
+.post :global(h5) {
+  margin: 1.8rem 0 0.8rem;
+  padding-bottom: 5px;
+  color: var(--fg);
+  font-size: 1.3rem;
+  border-bottom: 1px solid rgb(191, 191, 191);
+}
+.post :global(h6) {
+  margin: 1.8rem 0 0.8rem;
+  padding-bottom: 5px;
+  color: var(--fg);
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgb(191, 191, 191);
+}
+.post :global(p) {
+  margin: 0.3rem 0;
+  color: var(--fg);
+  font-size: 1rem;
+  min-height: 1.8rem;
+}
+.post :global(video),
+.post :global(img) {
+  max-width: 100%;
+  display: inline-block;
+}
+.post :global(blockquote) {
+  margin: 0.6rem 0;
+  padding: 0 0.9rem;
+  border-left: 3px solid var(--fg);
+  font-size: 1rem;
+  line-height: 1.8rem;
+}
+.post table {
+  margin: 1rem 0;
+}
+.post ul {
+  font-size: 1rem;
+}
+.post ol {
+  font-size: 1rem;
+}
+.post p code {
+  color: #eb5757;
+}
+.post footer {
+  padding: 0;
+  border: 0;
+}
