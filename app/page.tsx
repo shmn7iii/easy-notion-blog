@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 }
 
 const RootPage = async () => {
-  const post = await getPostBySlug('_index')
+  const post = await getPostBySlug('_root')
   const blocks = await Promise.all([
     getAllBlocksByBlockId(post.PageId),
   ])
