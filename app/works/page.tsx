@@ -1,13 +1,12 @@
-import Image from 'next/image'
 import {
   PostBody
-} from '../components/blog-parts'
+} from '../../components/blog-parts'
 import {
   getAllPosts,
   getPostBySlug,
   getAllBlocksByBlockId,
-} from '../lib/notion/client'
-import styles from '../styles/portfolio.module.css'
+} from '../../lib/notion/client'
+import styles from '../../styles/portfolio.module.css'
 
 export const revalidate = 30
 
@@ -16,8 +15,8 @@ export async function generateStaticParams() {
   return posts.map(p => ({ slug: p.Slug }))
 }
 
-const RootPage = async () => {
-  const post = await getPostBySlug('_root')
+const WorksPage = async () => {
+  const post = await getPostBySlug('_works')
   const blocks = await Promise.all([
     getAllBlocksByBlockId(post.PageId),
   ])
@@ -25,10 +24,6 @@ const RootPage = async () => {
   return (
     <>
       <div>
-        <div className={styles.icon}>
-          <Image src="/icon.png" width={128} height={128} alt="icon" />
-        </div>
-
         <div className={styles.post}>
           <PostBody blocks={blocks} />
         </div>
@@ -37,4 +32,4 @@ const RootPage = async () => {
   )
 }
 
-export default RootPage
+export default WorksPage

@@ -39,6 +39,12 @@ export const HeaderLinks = () => (
     <Link href="/" passHref>
       Home
     </Link>
+    <Link href="/news" passHref>
+      News
+    </Link>
+    <Link href="/works" passHref>
+      Works
+    </Link>
     <Link href="/blog" passHref>
       Blog
     </Link>
