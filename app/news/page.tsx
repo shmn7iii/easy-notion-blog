@@ -25,6 +25,7 @@ const NewsPage = async () => {
     <>
       <div>
         <div className={styles.post}>
+          <h3> News </h3>
           <PostBody blocks={blocks} />
         </div>
       </div>

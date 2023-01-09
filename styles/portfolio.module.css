@@ -2,6 +2,12 @@
   border-radius: 5px;
 }
 
+.post :global(h3) {
+  margin: 0 0 0.8rem;
+  padding-bottom: 5px;
+  color: var(--fg);
+  font-size: 1.8rem;
+}
 .post :global(h4) {
   margin: 0 0 0.8rem;
   padding-bottom: 5px;

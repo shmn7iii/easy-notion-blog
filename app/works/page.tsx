@@ -25,6 +25,7 @@ const WorksPage = async () => {
     <>
       <div>
         <div className={styles.post}>
+          <h3> Works </h3>
           <PostBody blocks={blocks} />
         </div>
       </div>
