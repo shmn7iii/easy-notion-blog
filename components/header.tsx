@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation"
 import styles from '../styles/header.module.css'
 import {
+  HeaderNavis,
   HeaderLinks,
   Logo,
 } from './blog-parts'
@@ -13,6 +14,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Logo subTitle={pathname.split('/')[1]} />
+      <HeaderNavis />
       <HeaderLinks />
     </header>
   )

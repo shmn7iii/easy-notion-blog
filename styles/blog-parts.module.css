@@ -43,6 +43,24 @@
   }
 }
 
+.headerNavis {
+  display: flex;
+  align-items: center;
+}
+.headerNavis a {
+  display: flex;
+  align-items: flex-end;
+  margin: 0 10px 0 10px;
+  color: var(--fg);
+  font-weight: 700;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  .headerNavis  {
+    margin-top: 5px;
+  }
+}
+
 .headerLinks {
   display: flex;
   align-items: center;
@@ -52,8 +70,12 @@
   align-items: flex-end;
   margin: 0 10px 0 10px;
   color: var(--fg);
-  font-weight: 700;
   cursor: pointer;
+}
+@media (max-width: 600px) {
+  .headerLinks  {
+    display: none;
+  }
 }
 
 .postIndexTitle {
