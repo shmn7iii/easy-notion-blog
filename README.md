@@ -1,6 +1,4 @@
-## shmn7iii blog
-
-https://www.shmn7iii.net
+## [old] shmn7iii blog
 
 Fork from [easy-notion-blog](https://github.com/otoyo/easy-notion-blog).
 
